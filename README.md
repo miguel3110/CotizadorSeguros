@@ -1,1 +1,2 @@
 # CotizadorSeguros
+python run.py
