@@ -8,4 +8,5 @@ class Spouse:
     dob: str
     id_type: str
     id_number: str
+    age: int
     middle_name: Optional[str] = None

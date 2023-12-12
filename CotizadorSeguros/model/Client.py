@@ -9,6 +9,7 @@ class Client:
     last_name: str 
     email: str
     dob: str
+    age: int
     id_type: str
     id_number: str
     gender: str
