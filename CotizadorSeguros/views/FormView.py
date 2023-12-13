@@ -66,19 +66,21 @@ class FormPage (AppPage):
     def add_dependent_button(self, e: ControlEvent):
         if self.has_children.value == True:
             self.add_dependent.disabled = False
-            
+            self.dependent_controls.controls.clear()
+            self.page.update()
         elif self.has_children.value == False:
             self.add_dependent.disabled = True
+            self.add_dependent.value = 0
             self.count = 1
             self.dependent_controls.controls.clear()
             
             self.page.controls.remove(self.dependent_controls)
+            self.page.update()
             
-            
-        self.page.update()
+        
 
     def dependent_info(self, e: ControlEvent):
-        #self.delete_dependent.disabled = False  
+        self.add_dependent.disabled = True  
         self.dependent_firstname = ft.TextField(label="Primer Nombre", helper_text="Ejemplo: Juan", border=ft.InputBorder.UNDERLINE, filled=True)
         self.dependent_middlename = ft.TextField(label="Segundo Nombre - Optional", helper_text=" ", border=ft.InputBorder.UNDERLINE, filled=True)
         self.dependent_lastname = ft.TextField(label="Primer Apellido", helper_text="Ejemplo: Carrillo", border=ft.InputBorder.UNDERLINE, filled=True)
@@ -114,9 +116,10 @@ class FormPage (AppPage):
             ])
         )
         
-        self.dependent_controls.controls.append(self.dependentinfo1)
-        self.dependent_controls.controls.append(self.dependentinfo2)
-        self.dependent_controls.controls.append(self.dependentinfo3)
+        for x in range (int(self.add_dependent.value)):
+            self.dependent_controls.controls.append(ft.Text(f"Informacion del dependiente {x+1}", ft.TextStyle(weight=ft.FontWeight.BOLD), size=20))
+            self.dependent_controls.controls.append(self.dependentinfo2)
+            self.dependent_controls.controls.append(self.dependentinfo3)
 
         self.page.controls.append(self.dependent_controls)
 
@@ -145,7 +148,11 @@ class FormPage (AppPage):
         
         self.email = ft.TextField(label="Correo Electronico", helper_text="Ejemplo: Juan@email.com", border=ft.InputBorder.UNDERLINE, filled=True)
         self.company = ft.TextField(label="Lugar de Trabajo", helper_text="Ejemplo: ACP", border=ft.InputBorder.UNDERLINE, filled=True)
-        self.address = ft.TextField(label="Dirreccion de residencia", helper_text="Ejemplo: Edificio F&F, Calle 50", border=ft.InputBorder.UNDERLINE, filled=True)
+        self.location = ft.Dropdown(label="Dirreccion de residencia", helper_text=" ", border=ft.InputBorder.UNDERLINE, filled=True, options=[
+            ft.dropdown.Option("Solo Panama"),
+            ft.dropdown.Option("Panama, Centro America y Colombia"),
+            ft.dropdown.Option("Internacional")
+        ])
         
         self.AccountExecutive = ft.Dropdown(label="Ejecutivo de cuenta", helper_text=" ", options=[
             ft.dropdown.Option("Maria Jimenez"),
@@ -158,7 +165,7 @@ class FormPage (AppPage):
         self.has_spouse = ft.Checkbox(label="Incluye conyuge", on_change=self.spouse_info)
         
         self.has_children = ft.Checkbox(label="Incluye dependiente", on_change=self.add_dependent_button)
-        self.add_dependent = ft.ElevatedButton(text="Agregar dependiente", on_click=self.dependent_info, disabled=True)
+        self.add_dependent = ft.TextField(label="Cantidad de dependientes", on_submit=self.dependent_info, disabled=True)
 
         self.page.controls = [
             ft.ResponsiveRow(
@@ -192,7 +199,7 @@ class FormPage (AppPage):
                     ]),
                     ft.Row([
                         self.email,
-                        self.address,
+                        self.location,
                         self.company
                     ])
                 ]
