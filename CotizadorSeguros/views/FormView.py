@@ -2,8 +2,7 @@ import flet as ft
 from flet import *
 from views.AppPage import AppPage
 from model.Client import Client
-
-from Controllers.FormController import FormController
+from model.cedula import validate_id
 
 class FormPage (AppPage):
     def __init__(self, root, route):
@@ -15,14 +14,24 @@ class FormPage (AppPage):
         self.page.scroll = ft.ScrollMode.ADAPTIVE
         self.count = 1
         self.dependent_controls = ListView()
+        
     
+    def id_number_validation(self, e: ControlEvent):
+        if self.id_type =="Cedula":
+            self.is_id_valid = validate_id(self.id_number.value)
+           
+            if not self.is_id_valid:
+                self.snk = SnackBar(ft.Text("Cedula invalida",color=colors.WHITE),bgcolor=colors.RED)
+                self.page.controls.append(self.snk)
+                self.page.update()
+
     def spouse_info(self, e: ControlEvent):
         if self.has_spouse.value == True:  
             self.spouse_firstname = ft.TextField(label="Primer Nombre", helper_text="Ejemplo: Juan", border=ft.InputBorder.UNDERLINE, filled=True)
             self.spouse_middlename = ft.TextField(label="Segundo Nombre - Optional", helper_text=" ", border=ft.InputBorder.UNDERLINE, filled=True)
             self.spouse_lastname = ft.TextField(label="Primer Apellido", helper_text="Ejemplo: Carrillo", border=ft.InputBorder.UNDERLINE, filled=True)
             self.spouse_dob  = ft.TextField(label="Fecha de nacimiento", helper_text="DD/MM/AAAA", border=ft.InputBorder.UNDERLINE, filled=True)
-            self.spouse_idnumber = ft.TextField(label="Numero de identificaicon", helper_text="Ejemplo: 3-453-5555", border=ft.InputBorder.UNDERLINE, filled=True)
+            self.spouse_idnumber = ft.TextField(label="Numero de identificaicon", helper_text="Ejemplo: 3-453-5555", border=ft.InputBorder.UNDERLINE, filled=True, on_blur=self.id_number_validation)
             self.spouse_idtype = ft.Dropdown(label="Tipo de documento", helper_text=" ", options=[
                                 ft.dropdown.Option("Cedula"),
                                 ft.dropdown.Option("Pasaporte")
@@ -85,7 +94,7 @@ class FormPage (AppPage):
         self.dependent_middlename = ft.TextField(label="Segundo Nombre - Optional", helper_text=" ", border=ft.InputBorder.UNDERLINE, filled=True)
         self.dependent_lastname = ft.TextField(label="Primer Apellido", helper_text="Ejemplo: Carrillo", border=ft.InputBorder.UNDERLINE, filled=True)
         self.dependent_dob  = ft.TextField(label="Fecha de nacimiento", helper_text="DD/MM/AAAA", border=ft.InputBorder.UNDERLINE, filled=True)
-        self.dependent_idnumber = ft.TextField(label="Numero de identificaicon", helper_text="Ejemplo: 3-453-5555", border=ft.InputBorder.UNDERLINE, filled=True)
+        self.dependent_idnumber = ft.TextField(label="Numero de identificaicon", helper_text="Ejemplo: 3-453-5555", border=ft.InputBorder.UNDERLINE, filled=True, on_blur=self.id_number_validation)
         self.dependent_idtype = ft.Dropdown(label="Tipo de documento", helper_text=" ", options=[
                         ft.dropdown.Option("Cedula"),
                             ft.dropdown.Option("Pasaporte")
@@ -144,11 +153,11 @@ class FormPage (AppPage):
             ft.dropdown.Option("Cedula"),
             ft.dropdown.Option("Pasaporte")
         ])
-        self.id_number = ft.TextField(label="Numero de identificacion", helper_text="Ejemplo: 3-453-5555", border=ft.InputBorder.UNDERLINE, filled=True)
+        self.id_number = ft.TextField(label="Numero de identificacion", helper_text="Ejemplo: 3-453-5555", border=ft.InputBorder.UNDERLINE, filled=True, on_submit=self.id_number_validation)
         
         self.email = ft.TextField(label="Correo Electronico", helper_text="Ejemplo: Juan@email.com", border=ft.InputBorder.UNDERLINE, filled=True)
         self.company = ft.TextField(label="Lugar de Trabajo", helper_text="Ejemplo: ACP", border=ft.InputBorder.UNDERLINE, filled=True)
-        self.location = ft.Dropdown(label="Dirreccion de residencia", helper_text=" ", border=ft.InputBorder.UNDERLINE, filled=True, options=[
+        self.location = ft.Dropdown(label="Area Geografica", helper_text=" ", border=ft.InputBorder.UNDERLINE, filled=True, options=[
             ft.dropdown.Option("Solo Panama"),
             ft.dropdown.Option("Panama, Centro America y Colombia"),
             ft.dropdown.Option("Internacional")
@@ -166,6 +175,7 @@ class FormPage (AppPage):
         
         self.has_children = ft.Checkbox(label="Incluye dependiente", on_change=self.add_dependent_button)
         self.add_dependent = ft.TextField(label="Cantidad de dependientes", on_submit=self.dependent_info, disabled=True)
+        self.budget = ft.TextField(label="Presupuesto", helper_text=" ", border=ft.InputBorder.UNDERLINE, filled=True)
 
         self.page.controls = [
             ft.ResponsiveRow(
@@ -201,6 +211,13 @@ class FormPage (AppPage):
                         self.email,
                         self.location,
                         self.company
+                    ])
+                ]
+            ),
+            ft.ResponsiveRow(
+                controls=[
+                    ft.Row([
+                        self.budget
                     ])
                 ]
             ),

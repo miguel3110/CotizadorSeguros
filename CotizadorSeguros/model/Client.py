@@ -14,10 +14,11 @@ class Client:
     id_number: str
     gender: str
     company: str
-    address: str
+    location: str
     AccountExecutive: str
     has_spouse: bool = False
     has_children: bool = False
+    number_of_dependent: int = 0
     dependent: List[Dependent] = field(default=list)
     spouse: Optional[Spouse] = None
     middle_name: Optional[str] = None

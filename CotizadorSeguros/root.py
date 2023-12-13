@@ -1,10 +1,14 @@
 import flet as ft
 from views.AppPage import AppPage
 from views.FormView import FormPage
+from views.FirstView import FirstView
+#from views.ComparisonView import ComparisonView
 
 def main(page: ft.Page):
     pages: list[AppPage] = [
-        FormPage(root=page, route='/')
+        FirstView(root=page, route='/'),
+        FormPage(root=page, route='/Form'),
+        #ComparisonView(root=page, route='/Comparison')
     ]
     page.title = "COTIZADOR - BETA/DUMMY/PRUEBA/COMO LE QUIERAS DECIR"
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
