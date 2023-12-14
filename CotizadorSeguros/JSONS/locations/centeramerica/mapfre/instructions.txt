@@ -1,0 +1,29 @@
+for this insurance plan. the way to calculate the price is the following
+
+the price will change Depending on the age of the client and how many people are added 
+into the plan and their ages
+THERE IS only one deudctable for this plan that is 500
+
+if a client is 30 years old his price will be 91.95.
+
+if that same client wants to add his spouse into the plan and the spouse is 25 years old 
+the price will be 91.95 + 77.56 = 169.51
+if you go to the json you can se that the price for a deductable of 500 for a member of the plan
+
+if that same client wants to add his spouse of 25 years old and a dependent of 60 years old then the prince will be
+91.95 + 77.56 + 237.62 = 407.13
+
+if that same client also wants to include a dependent of 3 years old then his prince will be
+91.95 + 77.56 + 237.62 + 65.68 = 472.81
+
+
+REMEMBER THAT SPOUSE = PARTNER
+
+Let me deconstruct the JSON for you
+
+{
+    "500": "117.64", //Deductable, fior this plan ther is 
+                     //only one deductable and the price will change according to the age of the client
+    "age": "44"  //The age
+}
+
