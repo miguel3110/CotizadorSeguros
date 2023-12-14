@@ -62,9 +62,9 @@ class FormPage (AppPage):
                 ])
             )
            
-            self.page.controls.insert(3, self.spouseinfo1)
-            self.page.controls.insert(4, self.spouseinfo2)
-            self.page.controls.insert(5, self.spouseinfo3)
+            self.page.controls.insert(5, self.spouseinfo1)
+            self.page.controls.insert(6, self.spouseinfo2)
+            self.page.controls.insert(7, self.spouseinfo3)
             self.page.update()
         else:
             self.page.controls.remove(self.spouseinfo1)
@@ -137,6 +137,10 @@ class FormPage (AppPage):
         
     
     def get_page(self) -> ft.View:
+        self.sub_branch = ft.Dropdown(label="Sub Ramo", helper_text=" ", options=[
+            ft.dropdown.Option("Individual"),
+            ft.dropdown.Option("Colectivo")
+        ])
         self.first_name = ft.TextField(label="Primer Nombre", helper_text="Ejemplo: Juan", border=ft.InputBorder.UNDERLINE, filled=True)
         self.middle_name = ft.TextField(label="Segundo Nombre - Optional", helper_text=" ", border=ft.InputBorder.UNDERLINE, filled=True)
         self.last_name = ft.TextField(label="Primer Apellido", helper_text="Ejemplo: Carrillo", border=ft.InputBorder.UNDERLINE, filled=True)
@@ -164,11 +168,28 @@ class FormPage (AppPage):
         ])
         
         self.AccountExecutive = ft.Dropdown(label="Ejecutivo de cuenta", helper_text=" ", options=[
-            ft.dropdown.Option("Maria Jimenez"),
-            ft.dropdown.Option("Jose Martinez"),
-            ft.dropdown.Option("Lili Rojas"),
-            ft.dropdown.Option("Saul Abrego"),
-            ft.dropdown.Option("Andres Gutierrez")
+            ft.dropdown.Option("ALEJANDRA DAYAN"),
+            ft.dropdown.Option("ANA DE OSORIO"),
+            ft.dropdown.Option("ANA DE OSORIO"),
+            ft.dropdown.Option("ANDREA CRUZ"),
+            ft.dropdown.Option("ANYURI GUERRERO"),
+            ft.dropdown.Option("BELKIS REYES"),
+            ft.dropdown.Option("CARLA GONZALEZ"),
+            ft.dropdown.Option("CECILIA HOMSANY"),
+            ft.dropdown.Option("CINDY PEREZ"),
+            ft.dropdown.Option("EMMA WILLIAMS"),
+            ft.dropdown.Option("ERIKA CAVEDILLA"),
+            ft.dropdown.Option("FABIOLA FRENI"),
+            ft.dropdown.Option("HEIDY JIMENEZ"),
+            ft.dropdown.Option("JENNIFER DE GRACIA"),
+            ft.dropdown.Option("MAILETH BARAHONA"),
+            ft.dropdown.Option("MILDRED GARRIDO"),
+            ft.dropdown.Option("PABLO MEDINA"),
+            ft.dropdown.Option("SAMANTHA TRIGUEROS"),
+            ft.dropdown.Option("TERESA NAVAS"),
+            ft.dropdown.Option("YARIELA ROJAS"),
+            ft.dropdown.Option("YERICA GARCIA"),
+            ft.dropdown.Option("YERLY ALONZO"),
         ])
         
         self.has_spouse = ft.Checkbox(label="Incluye conyuge", on_change=self.spouse_info)
@@ -178,6 +199,7 @@ class FormPage (AppPage):
         self.budget = ft.TextField(label="Presupuesto", helper_text=" ", border=ft.InputBorder.UNDERLINE, filled=True)
 
         self.page.controls = [
+            
             ft.ResponsiveRow(
                 controls=[
                     ft.Row([
@@ -185,6 +207,14 @@ class FormPage (AppPage):
                     ])
                 ],
                 alignment=MainAxisAlignment.SPACE_BETWEEN
+            ),
+            ft.ResponsiveRow(
+                controls=[
+                    ft.Row([
+                        ft.Dropdown(label="Ramo", helper_text=" ", options=[ft.dropdown.Option("Salud")]),
+                        self.sub_branch
+                    ])
+                ]
             ),
             ft.ResponsiveRow(
                 controls=[

@@ -1,0 +1,39 @@
+{
+    "data": [
+        {
+            "Insurance Company": "PALIG",
+            "Plan name": "FAMILY MEDICAL CARE",
+            "Insurance Amount": "50,000.00",
+            "Plan Type": "ANUAL RENOVABLE",
+            "Location": "Solo Panama"
+        },
+        {
+            "Insurance Company": "MAPFRE",
+            "Plan name": "SOLUCION CLASSIC",
+            "Insurance Amount": "350,000.00",
+            "Plan Type": "VITALICIO",
+            "Location": "Panama, Centro America y Colombia"
+        },
+        {
+            "Insurance Company": "MAPFRE",
+            "Plan name": "SOLUCION SILVER",
+            "Insurance Amount": "350,000.00",
+            "Plan Type": "ANUAL RENOVABLE",
+            "Location": "Panama, Centro America y Colombia"
+        },
+        {
+            "Insurance Company": "INTERNACIONAL DE SEGUROS",
+            "Plan name": "ULTIMATE",
+            "Insurance Amount": "2,000,000.00",
+            "Plan Type": "ANUAL RENOVABLE",
+            "Location": "Internacional"
+        },
+        {
+            "Insurance Company": "MAPFRE",
+            "Plan name": "FIRST CLASS",
+            "Insurance Amount": "1,000,000.00",
+            "Plan Type": "ANUAL RENOVABLE",
+            "Location": "Internacional"
+        }
+    ]
+}

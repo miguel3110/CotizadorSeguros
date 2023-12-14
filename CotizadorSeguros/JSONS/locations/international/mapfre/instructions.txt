@@ -1,0 +1,31 @@
+for this insurance plan. the way to calculate the price is the following
+
+the price will change Depending on the deductable and age of the client and how many people are a
+dded into the plan the price will change
+
+if a client wants a deductable of 2500 and is 30 years old his price will be 203.51.
+
+if that same client wants to add his spouse into the plan and the spouse is 25 years old 
+the price will be 203.51 + 186.49 = 390.00
+if you go to the json you can se that the price for a deductable of 2500 for a person
+
+if that same client wants to add his spouse of 25 years old and a dependent of 60 years old then the prince will be
+203.51 + 186.49 + 441.51 = 831.51
+
+if that same client also wants to include a dependent of 3 years old then his prince will be
+203.51 + 186.49 + 441.51 + 155.98 = 987.49
+
+
+REMEMBER THAT SPOUSE = PARTNER
+
+Let me deconstruct the JSON for you
+
+{
+    "Age": "27",
+    "1,000.00": "223.79",  // "Deductable" : "Price"
+    "2,500.00": "186.49",  // "Deductable" : "Price"
+    "5,000.00": "155.41",  // "Deductable" : "Price"
+    "7,500.00": "129.51",  // "Deductable" : "Price"
+    "10,000.00": "107.93"  // "Deductable" : "Price"
+}
+

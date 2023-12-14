@@ -1,0 +1,39 @@
+for this insurance plan. the way to calculate the price is the following
+
+the price will change Depending on the age of the client and how many people are added 
+into the plan. There is no dedectable
+
+LUCKILY we dont have to worry about a DEDUCTABLE because all are 0
+
+so if a client wants this plan, and has 40 years old he will pay
+63
+
+if that same client wants to add his spouse of 20 years old and two dependents then his price will be
+63+32= 95
+
+for every dependent added to the plan you just ad 26 to the price
+If the client from before has include his 20 years old spouse and add 5 dependent to the plan the price will be
+63+32+26+26+26+26+26=225
+
+REMEMBER THAT SPOUSE = PARTNER
+
+Let me deconstruct the JSON for you
+{
+    "alone": [
+        {
+            "0": "46", //The deudctable is 0 for all this plan and the price will be 46 
+            "age": "34"
+        }
+    ],
+    "spouse": [
+        {
+            "0":"36", // the deudctable is 0 fot this plan and the price if a spouse of 31 years old is added will be 36 more
+            "age": "31"
+        }
+    ],
+    "dependent 1": [
+        {
+            "0": "26"
+        }
+    ]
+}

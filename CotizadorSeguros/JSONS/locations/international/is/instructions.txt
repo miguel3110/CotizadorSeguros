@@ -1,0 +1,88 @@
+for this insurance plan. the way to calculate the price is the following
+
+the price will change Depending on the deductable and age of the client and how many people are added 
+into the plan the price will change
+
+if a client wants a deductable of 2000 and is 30 years old his price will be 153.30
+
+if that same client wants to add his spouse into the plan and the spouse is 45 years old 
+the price will be 153.30 + 442.10 = 595.4
+if you go to the json you can se that the price for a deductable of 2000 for a person
+
+if that same client wants to add his spouse of 45 years old and two dependents then his price will be
+153.30+442.10+153.10 = 748.50
+
+for every other dependent after the 4 dependent, you use the same price as 4 dependents
+
+REMEMBER THAT SPOUSE = PARTNER
+
+Let me deconstruct the JSON for you
+
+alone:[ // when is just the cliente alone BTW the real prices are in the JSON this i just an example
+    {
+        "Age": "27",
+        "1,000.00": "223.79",  // "Deductable" : "Price"
+        "1,500.00": "186.49",  // "Deductable" : "Price"
+        "2,000.00": "155.41",  // "Deductable" : "Price"
+        "4,000.00": "129.51",  // "Deductable" : "Price"
+        "10,000.00": "107.93"  // "Deductable" : "Price"
+        "20,000.00": "107.93"  // "Deductable" : "Price"
+    }
+],
+spouse:[ // need to add this price to the client when it has a spouse
+    {
+        "1000": "345.10",
+        "1500": "2,847.00",
+        "2000": "271.10",
+        "4000": "230.40",
+        "10000": "218.90",
+        "20000": "195.90",
+        "Age": "27"
+    }
+]
+"1 dependent":[ //No matter the age if the dependent this will be the prices
+    "1 dependent": [
+        {
+            "1000": "99.30",
+            "1500": "81.50",
+            "2000": "76.50",
+            "4000": "64.20",
+            "10000": "57.70",
+            "20000": "51.90"
+        }
+    ],
+    "2 dependent": [
+        [
+            {
+                "1000": "198.50",
+                "1500": "297.70",
+                "2000": "347.30",
+                "4000": "162.90",
+                "10000": "244.40",
+                "20000": "285.10"
+            }
+        ]
+    ],
+    "3 dependent": [
+        [
+            {
+                "1000": "297.70",
+                "1500": "347.30",
+                "2000": "162.90",
+                "4000": "244.40",
+                "10000": "285.10",
+                "20000": "153.10"
+            }
+        ]
+    ],
+    "4 dependent": [
+        {
+            "1000": "347.30",
+            "1500": "162.90",
+            "2000": "244.40",
+            "4000": "285.10",
+            "10000": "153.10",
+            "20000": "229.60"
+        }
+    ]
+]
