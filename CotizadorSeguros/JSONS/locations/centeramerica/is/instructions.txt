@@ -1,0 +1,70 @@
+for this insurance plan. the way to calculate the price is the following
+
+the price will change Depending on the age of the client and how many people are added 
+into the plan and their ages
+THERE IS only one deudctable for this plan that is 300
+
+if a client is 30 years old his price will be 93.
+
+if that same client wants to add his spouse into the plan and the spouse is 25 years old 
+the price will be 93 + 72.10 = 165.10
+if you go to the json you can se that the price for a deductable of 300 for a member of the plan
+
+
+if that same client also wants to include a 1 dependent  then his prince will be
+93 + 72.10 + 66.10= 231.20
+
+if that same client wants to include a 6 dependent it the price will be
+93 + 72.10(spouse) + 317.30 (5 dependents) + 62.8 (the sixth dependent) = 545.20
+
+so, they chare 62.8 for the sixth dependent, 62.8 for the seventh and so on
+
+
+REMEMBER THAT SPOUSE = PARTNER
+
+Let me deconstruct the JSON for you
+
+ alone   
+{
+    "300": "151.9", //Deductable, for this plan ther is 
+                    //only one deductable and the price will change according to the age of the client
+     "age": "47"
+}
+ spouse
+
+{
+    "300": "81.4", //Deductable, fior this plan ther is 
+                    //only one deductable and the price will change according to the age of the client
+    "age": "26" 
+}
+
+"dependent 1": [
+        {
+            "300": "66.1"
+        }
+    ],
+    "dependent 2": [
+        {
+            "300": "129"
+        }
+    ],
+    "dependent 3": [
+        {
+            "300": "191.7"
+        }
+    ],
+    "dependent 4": [
+        {
+            "300": "254.5"
+        }
+    ],
+    "dependent 5": [
+        {
+            "300": "317.3"
+        }
+    ],
+    "dependent 6 or more": [
+        {
+            "300": "62.8" //each + the price of 5 dependents
+        }
+    ]
